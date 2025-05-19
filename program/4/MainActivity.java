@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onExplicitButtonClicked(View view )
     {
-        Intent i=new Intent(MainActivity.this, NewActivity.class);
+        Intent i=new Intent(MainActivity.this, MainActivity.class);
         startActivity(i);
     }
 }
