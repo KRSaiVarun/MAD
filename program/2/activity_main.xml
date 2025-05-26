@@ -6,17 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <Button
         android:id="@+id/por"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Portrait"
         android:layout_centerInParent="true"/>
+
     <Button
         android:id="@+id/lan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Landscape"
         android:layout_below="@id/por"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
