@@ -2,11 +2,10 @@ package com.example.myapplication2;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication2.EdgeToEdge;
+import androidx.activity.EdgeToEdge;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -15,15 +14,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        Button l = findViewById(R.id.lan);
-        Button p = findViewById(R.id.por);
+        Button por = findViewById(R.id.por);
+        Button lan = findViewById(R.id.lan);
 
-        l.setOnClickListener(v -> {
+        lan.setOnClickListener(v -> {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             Toast.makeText(this, "Hey! We are in Landscape orientation", Toast.LENGTH_SHORT).show();
         });
 
-        p.setOnClickListener(v -> {
+        por.setOnClickListener(v -> {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             Toast.makeText(this, "Hey! We are in Portrait orientation", Toast.LENGTH_SHORT).show();
         });
