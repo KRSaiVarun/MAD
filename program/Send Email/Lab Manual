@@ -1,0 +1,100 @@
+Create an application to send an email.
+
+1. Click New Project. The New Project dialog box appears.
+2. Choose Empty Views Activity, then click Next.
+3. Specify the name of your project, select the language as Java, and set the Minimum SDK as API 16 (Jelly Bean, Android 4.1). Click the Finish button.
+4. To create another activity for Explicit Intent, go to File → New → Activity → Empty Views Activity. The New Android Activity dialog box appears. Specify the name of the activity as NewActivity, then click Finish.
+5. Create activity_main.xml with a Send Email form and a Counter TextView using the following code:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Recipient Email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Subject"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextMessage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:hint="Message"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Email"/>
+</LinearLayout>
+
+6. Update MainActivity.java with the following code:
+
+package com.example.myapplication14;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editTextEmail, editTextSubject, editTextMessage;
+    Button buttonSend;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextSubject = findViewById(R.id.editTextSubject);
+        editTextMessage = findViewById(R.id.editTextMessage);
+        buttonSend = findViewById(R.id.buttonSend);
+
+        buttonSend.setOnClickListener(v -> {
+            String email = editTextEmail.getText().toString();
+            String subject = editTextSubject.getText().toString();
+            String message = editTextMessage.getText().toString();
+
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Please enter an email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + email));
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_TEXT, message);
+
+            try {
+                startActivity(Intent.createChooser(intent, "Choose Email App"));
+            } catch (Exception e) {
+                Toast.makeText(this, "No email app found", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
