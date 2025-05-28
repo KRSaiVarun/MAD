@@ -1,0 +1,90 @@
+Creating an Android Activity with START and STOP Buttons
+1. Click New Project, the New Project Dialog box appears.
+2. Choose Empty Views Activity then click Next.
+3. Specify the Name of your project, Select the Language as Java, and Select the
+Minimum SDK as API 16 (“Jelly Bean”, Android 4.1). Click Finish Button.
+4. To create another activity for Explicit Intent, Click FileàNewàActivityà Empty
+Views Activity. A New Android Activity dialog box appears, Specify the Name of the
+activity as NewActivity then click Finish.
+5. Create activity_main.xml with a START button, a STOP button, and a Counter TextView using the following code:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/inputText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:hint="Enter text here"
+        android:minHeight="48dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/speakButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert Text to Speech"/>
+</LinearLayout>
+
+
+6. Update the following MainActivity.java
+
+package com.example.myapplication13;
+
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText inputText;
+    private Button speakButton;
+    private TextToSpeech textToSpeech;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        inputText = findViewById(R.id.inputText);
+        speakButton = findViewById(R.id.speakButton);
+
+        // Initialize TextToSpeech
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status != TextToSpeech.ERROR) {
+                textToSpeech.setLanguage(Locale.US);
+            }
+        });
+
+        speakButton.setOnClickListener(view -> {
+            String text = inputText.getText().toString();
+            if (!text.isEmpty()) {
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            } else {
+                Toast.makeText(MainActivity.this, "Please enter text to speak", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
+    }
+}
