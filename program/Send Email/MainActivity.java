@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextEmail, editTextSubject, editTextMessage;
-    Button buttonSend;
+    private EditText editTextEmail, editTextSubject, editTextMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +20,26 @@ public class MainActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextSubject = findViewById(R.id.editTextSubject);
         editTextMessage = findViewById(R.id.editTextMessage);
-        buttonSend = findViewById(R.id.buttonSend);
+        Button buttonSend = findViewById(R.id.buttonSend);
 
-        buttonSend.setOnClickListener(v -> {
-            String email = editTextEmail.getText().toString();
-            String subject = editTextSubject.getText().toString();
-            String message = editTextMessage.getText().toString();
+        buttonSend.setOnClickListener(v -> sendEmail());
+    }
 
-            if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter an email address", Toast.LENGTH_SHORT).show();
-                return;
-            }
+    private void sendEmail() {
+        String email = editTextEmail.getText().toString();
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Please enter an email address", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:" + email));
-            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-            intent.putExtra(Intent.EXTRA_TEXT, message);
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+        intent.putExtra(Intent.EXTRA_SUBJECT, editTextSubject.getText().toString());
+        intent.putExtra(Intent.EXTRA_TEXT, editTextMessage.getText().toString());
 
-            try {
-                startActivity(Intent.createChooser(intent, "Choose Email App"));
-            } catch (Exception e) {
-                Toast.makeText(this, "No email app found", Toast.LENGTH_SHORT).show();
-            }
-        });
+        try {
+            startActivity(Intent.createChooser(intent, "Choose Email App"));
+        } catch (Exception e) {
+            Toast.makeText(this, "No email app found", Toast.LENGTH_SHORT).show();
+        }
     }
 }
