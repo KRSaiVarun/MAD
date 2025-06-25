@@ -5,26 +5,22 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.activity.EdgeToEdge;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
         Button por = findViewById(R.id.por);
         Button lan = findViewById(R.id.lan);
 
-        lan.setOnClickListener(v -> {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            Toast.makeText(this, "Hey! We are in Landscape orientation", Toast.LENGTH_SHORT).show();
-        });
+        lan.setOnClickListener(v -> changeOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, "Hey! We are in Landscape orientation"));
+        por.setOnClickListener(v -> changeOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, "Hey! We are in Portrait orientation"));
+    }
 
-        por.setOnClickListener(v -> {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            Toast.makeText(this, "Hey! We are in Portrait orientation", Toast.LENGTH_SHORT).show();
-        });
+    private void changeOrientation(int orientation, String message) {
+        setRequestedOrientation(orientation);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
