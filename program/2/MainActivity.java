@@ -1,8 +1,8 @@
 package com.example.myapplicationmap;
 
-import android.content.pm.*; // Wildcard import for ActivityInfo and other related classes
+import android.content.pm.*; 
 import android.os.Bundle;
-import android.widget.*; // Wildcard import for all widget classes
+import android.widget.*; 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
