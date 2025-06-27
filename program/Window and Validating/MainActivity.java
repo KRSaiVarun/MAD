@@ -1,24 +1,21 @@
 package com.example.loginapp;
 
-import android.os.Bundle; 
-import android.view.View; 
-import android.widget.Button; 
-import android.widget.EditText; 
-import android.widget.TextView; 
-import android.widget.Toast; 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*; 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText usernameInput, passwordInput; 
+    private EditText usernameInput, passwordInput;
     private TextView loginStatus;
     private static final String USER = "user", PASS = "password";
 
-    @Override 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        usernameInput = findViewById(R.id.usernameInput); 
-        passwordInput = findViewById(R.id.passwordInput); 
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
         loginStatus = findViewById(R.id.loginStatus);
         
         findViewById(R.id.loginButton).setOnClickListener(v -> validateLogin());
