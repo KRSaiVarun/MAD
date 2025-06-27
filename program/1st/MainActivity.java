@@ -1,4 +1,4 @@
-package com.example.hellobutton;
+package com.example.myapplicationkrsend;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); // Ensure this matches your XML file name
         Button b = findViewById(R.id.hello);
-        b.setOnClickListener(v -> 
-            Toast.makeText(this, "Hey! We are using Android Application", Toast.LENGTH_SHORT).show());
+        b.setOnClickListener(v ->
+                Toast.makeText(this, "Hey! We are using Android Application", Toast.LENGTH_SHORT).show());
     }
 }
