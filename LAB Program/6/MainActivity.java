@@ -1,10 +1,10 @@
 package com.example.email;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.content.*;
+import android.net.*;
 import android.os.*;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.*;
 
 public class MainActivity extends AppCompatActivity {
     @Override
