@@ -1,10 +1,8 @@
 package com.example.loginapp;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.*;
+import android.widget.*;
+import androidx.appcompat.app.*;
 
 public class MainActivity extends AppCompatActivity {
 
