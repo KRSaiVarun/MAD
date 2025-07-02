@@ -1,9 +1,8 @@
 package com.example.login;
 
-import android.os.Bundle;
-import android.view.View;
+import android.os.*;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.*;
 
 public class MainActivity extends AppCompatActivity {
     private EditText usernameInput, passwordInput;
