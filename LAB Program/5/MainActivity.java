@@ -1,10 +1,9 @@
 package com.example.myapplication4;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.*;
+import android.net.*;
+import android.os.*;
+import androidx.appcompat.app.*;
 
 public class MainActivity extends AppCompatActivity {
     @Override
