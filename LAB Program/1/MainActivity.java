@@ -1,8 +1,7 @@
 package com.example.helloworld;
 
-import androidx.appcompat.app.*;
-import android.os.*;
-
+import androidx.appcompat.app.*; 
+import android.os.*; 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
